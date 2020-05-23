@@ -1,0 +1,259 @@
+EXERCICE1:
+Algorithme Division
+VAR a, b, q_entier,q_réel, reste : entiers
+
+DEBUT_ALGORITHME
+
+   Afficher("Entrer les valeurs de a et de b : ")
+   LIRE(a)
+   LIRE(b)
+   q_entier <--- floor(a/b)
+     Afficher("le quotient eniter de la division est: ", q_entirer)
+   q_réel <--- a/b
+     Afficher("le quotient réel de la division est: ", q_réel)
+   r <--- a%b
+     Afficher("le reste de la division est: ", reste)
+  
+FIN_ALGORITHME
+
+EXERCICE2:
+Algorithme Cercle
+VAR r, s, p : réels
+
+DEBUT_ALGORITHME
+
+   Afficher("Entrer le rayon du cercle: ")
+   LIRE(r)
+   s <--- r*r*4*atan(1)
+     Afficher("la surface du cercle est: ", s,"m2")
+   p <--- r*2*4*atan(1)
+     Afficher("le périmètre du cercle est: ", p,"m")
+  
+FIN_ALGORITHME
+
+EXERCICE3:
+Algorithme Résistances_Circuit
+Version1:
+VAR  R1, R2, R3, RT: réels
+
+DEBUT_ALGORITHME
+
+   Afficher("Saisir la valeur des résistances R1, R2 et R3: ")
+   LIRE(R1)
+   LIRE(R2)
+   LIRE(R3)
+   RT <--- R1+R2+R3
+     Afficher("la résistance totale du circuit en série est: ", RT,"ohm")
+   RT <--- (R1+R2+R3+)/(R1*R2+R2*R3+R1*R3)
+     Afficher("la résistance totale du circuit en parallèle est: ", RT,"ohm")
+
+FIN_ALGORITHME
+
+Version2:
+VAR R1, R2, R3, RT: réels
+             choix: entier
+			 
+DEBUT_ALGORITHME
+
+   Afficher("Saisir la valeur des résistances R1, R2 et R3: ")
+   LIRE(R1)
+   LIRE(R2)
+   LIRE(R3)
+   Si(choix==1) alors
+      RT <--- R1+R2+R3
+         Afficher("la résistance totale du circuit en série est: ", RT,"ohm")
+   Sinon Si(choix==2) alors		 
+      RT <--- (R1+R2+R3+)/(R1*R2+R2*R3+R1*R3)
+         Afficher("la résistance totale du circuit en parallèle est: ", RT,"ohm")
+         Sinon(Choix impossible!!)	
+         FinSi
+   FinSi		 
+
+FIN_ALGORITHME
+
+EXERCICE4:
+Algorithme Calcul_Puissance
+Version1:
+VAR x, P: entiers
+    n : réels
+
+DEBUT_ALGORITHME
+
+   Afficher("Entrer les valeurs de x et de n : ")
+   LIRE(x)
+   LIRE(n)
+   P <--- pow(x;n)
+     Afficher("le résultat de x à la puissance n est: ", P)
+	 
+FIN_ALGORITHME
+	 
+Version2:	 
+ VAR x, P, i: entiers
+    n : réels
+
+DEBUT_ALGORITHME
+    Afficher("Entrer les valeurs de x et de n : ")
+    LIRE(x)
+    LIRE(n)
+    P <--- 1 
+    Pour i allant de 1 à n
+       P <--- P*x
+	FinPour   
+	   Afficher("le résultat de x à la puissance n est: ", P)
+
+FIN_ALGORITHME
+
+EXERCICE5:
+Algorithme Calcul_Somme
+VAR somme, N, i : entiers
+
+DEBUT_ALGORITHME
+
+   somme <--- 0
+   Pour i allant de 1 à 5 alors
+      Afficher("Entrer les valeurs de N : ")
+      LIRE(N)
+	  somme <--- somme+N
+   FinPour
+     Afficher("la somme des N valeurs est: ", somme)
+  
+FIN_ALGORITHME
+
+EXERCICE6:
+Algorithme Distance_AB
+VAR x1, x2, y1, y2, D: réels
+
+DEBUT_ALGORITHME
+    Afficher("Entrer les coordonnées du point A(x1,y1): ")
+	Lire(x1)
+	Lire(y1)
+	Afficher("Entrer les coordonnéesdu point B(x2,y2): ")
+	Lire(x2)
+	Lire(y2)
+	D <--- sqrt(sqr(x1-x2)+sqr(y1-y2))
+	Afficher("La distance entre les point A et B est de: ",D,"m")
+   
+FIN_ALGORITHME
+
+EXERCICE7:
+Algorithme 
+VAR montant,reste,B20,B10,B,5P,2P1: entiers
+
+DEBUT_ALGORITHME
+    Afficher("Entrer le montant souhaité: ")
+	Lire(montant)
+	montant < -- montant/20
+	reste <-- montant%20
+	B10 <-- reste/10
+	reste <-- reste%10
+	B5 <-- reste/5
+	reste <-- reste%5
+	P2 <-- reste/2
+	reste <-- reste%2
+	P1 <-- reste/1
+	reste <-- reste%1
+	Afficher("la décomposition du montant saisi en billet de 20euro,10euro,5euro et 
+	         en pièces de 2euro,1euro est respectivement: ",B20, B10 , B5 , P2 , P1)
+	  
+FIN_ALGORITHME
+
+EXERCICE8:
+Algorithme Equation_2nd_Degré
+VAR a,b,c, D: réels
+
+DEBUT_ALGORITHME
+   Afficher("Entrer les coefficients de l'équation: ")
+   Lire(a)
+   Lire(b)
+   Lire(c)
+   Si(a==0 && b==0) alors 
+      Afficher("l'équation n'a pas de solution!")
+   Sinon Si (b!=0) alors
+         Afficher("la solution de l'équation est x= ",-c/b)
+		 FinSi
+   FinSi
+   D <-- (b*b) - (4*a*c)
+     Si D==0 alors 
+       Afficher("l'équation admet une unqiue solution x0=: ",-b/(2*a))
+     Sinon
+       Afficher("l'équation admet deux solutions x1= ",(-b-sqrt(D))/(2*a)," et x2= ",(-b+sqrt(D))/(2*a))	
+     FinSi	   
+FIN_ALGORITHME
+
+EXERCICE9:
+Algorithme Durée_Vol
+VAR Heure_D, HEURE_A, Min_D, Min_A, Min_Vol, Heure_Vol: entiers
+
+A
+DEBUT_ALGORITHME
+    Afficher("Entrer l'heure de départ: ")
+	Lire(Heure_D)
+	Lire(Min_D)
+	Afficher("l'heure de départ est: ",Heure_D,"h",Min_D,"mins")
+	Afficher("Entrer l'heure d'arrivée: ")
+	Lire(HEURE_A)
+	Lire(Min_A)
+	Afficher("l'heure d'arrivée est: ",HEURE_A,"h",Min_A,"mins")
+	Si(Min_A>Min_D) alors
+	  Min_Vol < -- Min_A - Min_D
+	  Heure_Vol <-- Heure_D - HEURE_A
+	  Afficher("la durée de la vol est de: ",Heure_Vol,"h",Min_Vol,"mins")
+	Sinon 
+      Min_Vol <-- 	
+
+
+
+
+
+
+FIN_ALGORITHME
+
+B
+DEBUT_ALGORITHME
+
+
+
+
+
+
+
+FIN_ALGORITHME
+
+EXERCICE10:
+Algorithme
+VAR A,B,C : entiers
+
+DEBUT_ALGORITHME
+    Afficher("Entrer les valeurs de A,B et C: ")
+	Lire(A)
+	Lire(B)
+	Lire(C)
+	Si(A>B && A>C) alors
+	   Si(B>C) alors 
+	      Afficher("l'ordre croissant est: ",C, B, A)
+	   Sinon
+          Afficher("l'ordre croissant est: ",B, C, A)
+       FinSi		  
+    Sinon Si(B>A && B>C) alors
+             Si(A>C) alors
+                Afficher("l'ordre croissant est: ",C, A, B)	
+             Sinon 
+                Afficher("l'ordre croissant est: ",A, C, B)
+             FinSi				
+          Sinon Si(C>A && C>B) alors 
+                    Si(A>B) alors
+                       Afficher("l'ordre croissant est: ",B, A, C)	
+                    Sinon 
+                       Afficher("l'ordre croissant est: ",A, B, C)
+					FinSi   
+				FinSi	   
+       	  FinSi 				   
+    FinSi
+
+FIN_ALGORITHME
+
+
+
+
+
+
