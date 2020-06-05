@@ -142,7 +142,7 @@ VAR montant,reste,B20,B10,B,5P,2P1: entiers
 DEBUT_ALGORITHME
     Afficher("Entrer le montant souhaité: ")
 	Lire(montant)
-	montant < -- montant/20
+	billet20 < -- montant/20
 	reste <-- montant%20
 	B10 <-- reste/10
 	reste <-- reste%10
@@ -181,10 +181,10 @@ DEBUT_ALGORITHME
 FIN_ALGORITHME
 
 EXERCICE9:
+VersionA:
 Algorithme Durée_Vol
 VAR Heure_D, HEURE_A, Min_D, Min_A, Min_Vol, Heure_Vol: entiers
 
-A
 DEBUT_ALGORITHME
     Afficher("Entrer l'heure de départ: ")
 	Lire(Heure_D)
@@ -199,28 +199,38 @@ DEBUT_ALGORITHME
 	  Heure_Vol <-- Heure_D - HEURE_A
 	  Afficher("la durée de la vol est de: ",Heure_Vol,"h",Min_Vol,"mins")
 	Sinon 
-      Min_Vol <-- 	
-
-
-
-
-
+      Min_Vol <-- Min_A+60-Min_D
+      Heure_Vol <-- Heure_D - HEURE_A
+      Afficher("la durée de la vol est de: ",Heure_Vol,"h",Min_Vol,"mins")	  
 
 FIN_ALGORITHME
 
-B
+VersionB:
+Algorithme Durée_Vol
+VAR Heure_D, HEURE_A, Min_D, Min_A, Min_Vol, Heure_Vol: entiers
+
 DEBUT_ALGORITHME
-
-
-
-
-
-
+    Afficher("Entrer l'heure de départ: ")
+	Lire(Heure_D)
+	Lire(Min_D)
+	Afficher("l'heure de départ est: ",Heure_D,"h",Min_D,"mins")
+	Afficher("Entrer l'heure d'arrivée: ")
+	Lire(HEURE_A)
+	Lire(Min_A)
+	Afficher("l'heure d'arrivée est: ",HEURE_A,"h",Min_A,"mins")
+	Si(Min_A>Min_D) alors
+	  Min_Vol < -- Min_A - Min_D
+	  Heure_Vol <-- 24 - Heure_D + HEURE_A
+	  Afficher("la durée de la vol est de: ",Heure_Vol,"h",Min_Vol,"mins")
+	Sinon 
+      Min_Vol <-- Min_A+60-Min_D
+      Heure_Vol <-- 24 - Heure_D + HEURE_A
+      Afficher("la durée de la vol est de: ",Heure_Vol,"h",Min_Vol,"mins")	  
 
 FIN_ALGORITHME
 
 EXERCICE10:
-Algorithme
+Algorithme Tri_Successif
 VAR A,B,C : entiers
 
 DEBUT_ALGORITHME
@@ -252,8 +262,396 @@ DEBUT_ALGORITHME
 
 FIN_ALGORITHME
 
+EXERCICE11:
+Algorithme Calculatrice
+VAR a, b : entiers
+   opera : char
+
+DEBUT_ALGORITHME
+     Afficher("saisir la valeur de a: ")
+	 Lire(a)
+	 Afficher("saisir l'opérateur de calcul: ")
+	 Lire(opera)
+	 Afficher("saisir la valeur de b: ")
+	 Lire(b)
+	 Si opera=="+" alors
+	    Afficher("la somme de a+b est de: ",a+b)
+	 Sinon Si opera=="-" alors
+              Afficher("la différence de a et b est de: ", a-b)
+           Sinon Si opera=="*" alors 
+                    Afficher("le produit de a et b est de: ", a*b)
+                 Sinon Si opera=="/" alors
+                          Si b!=0 alors 
+                             Afficher("la division de a et b est de: ", a/b)
+                          Sinon 
+                             Afficher("opération impossible!!")						  
+                          FinSi
+					   FinSi
+                 FinSi
+           FinSi
+     FinSi		   
+
+FIN_ALGORITHME
+
+EXERCICE12:
+Algorithme Nombre_Parfait
+VAR n, i, somme = entiers
+
+DEBUT_ALGORITHME
+    Afficher("entrer la valeur de n: ")
+	Si n==0 alors
+	    Afficher("la nombre",n,"n'est pas parfait!")
+	Sinon 
+      somme <-- 0 
+      Pour i allant de 2 à n div 2+1 faire
+        Si n%i==0 alors
+            somme <-- somme+i
+        FinSi
+      FinPour
+    Si n==somme alors
+       Afficher("le nombre",n,"est parfait")
+    Sinon
+       Afficher("le nombre",n,"n'est pas parfait")	
+    FinSi
+FIN_ALGORITHME
+
+EXERCICE13:
+Algorithme Date
+VAR jour, mois, annee : entiers
+
+DEBUT_ALGORITHME
+    Afficher("Entrer une date au format JJ/MM/AA")
+    Afficher("Ajouter le jour: ")
+	Lire(jour)
+	Afficher("Ajouter le mois: ")
+	Lire(mois)
+	Afficher("Ajouter l'année: ")
+	Lire(annee)
+	Si (0<jour<=31 && 0<mois<=12 && annee>=2020) alors
+	    Afficher("la date ",jour,"/",mois,"/",année," est valide")
+	Sinon
+        Afficher("la date est invalide!!")	
+FIN_ALGORITHME
+
+EXERCICE14:
+Algorithme Année_Bissextile
+VAR jour, mois, annee : entiers
+
+DEBUT_ALGORITHME
+
+  	Afficher("entrer la date au format jj/mm/AA: ")
+  	Lire(jour)
+	Lire(mois)
+	Lire(annee)
+	Afficher(jour,"/",mois,"/",annee)
+   	Si (annee%4==0 && annee%100!=0 || annee%400==0)
+	    Afficher("L'année est bissextile.")
+    Sinon
+	    Afficher("L'année n'est pas bissextile!")
+    FinSi
+
+FIN_ALGORITHME
+
+EXERCICE15: 
+Algorithme Somme_Moyenne
+VAR i, somme, n : entiers
+        moyenne : réel
+			
+DEBUT_ALGORITHME
+
+    somme <--- 0
+    Pour i allant de 1 à n+1 faire
+      	somme <--- Somme+i
+        moyenne <--- Somme/n
+    FinPour
+    Afficher("la somme des valeurs est: ",somme)
+  	Afficher("la moyenne de ces valeurs est: ",moyenne)
+	  
+Fin_ALGORITHME
+
+EXERCICE16:
+ALGORITHME Division_par_soustraction_successive
+VAR a, b, quotient :entiers
+
+DEBUT_ALGORITHME
+    Afficher("saisir une valeur a: ")
+	Lire(a)
+	Afficher("saisir une valeur b: ")
+	Lire(b)
+    quotient <--- 0
+    Tantque  a>=b faire
+      	a <---  a-b
+	    quotient <--- quotient+1
+    FinTantque
+    Afficher ("la division  par soustraction successives est: ",quotient)
+
+FIN_ALGORITHME
+
+EXERCICE17:
+Algorithme PGCD
+VAR a,b :entiers
+
+DEBUT_ALGORITHME
+
+    Afficher("Entrer une valeur de a : ")
+    Lire(a)
+    Afficher("Entrer une valeur de b : ")
+    Lire(b)
+    Tant que (a != b) faire
+        Si (a>b) alors
+            a ← a-b
+        Sinon 
+            b ← b-a
+        FinSi
+    FinTant que
+    Afficher("le pgcd est : ", a)
+	
+FIN_ALGORITHME
+
+EXERCICE18:
+Alogrithme PPCM
+VAR a, b,produit,  ppcm :eniers
+
+DEBUT_ALGORITHME
+
+    Afficher("Entrer la valeur de a : ")
+    Lire(a)
+    Afficher("Entrer la valeur de b : ")
+    Lire(b)
+    produit ←a*b
+    Tant que (a != b) faire
+        Si (a>b) alors
+            a ←- a-b
+        Sinon 
+            b ← b-a
+        FinSi
+    FinTant que
+    ppcm ← produit/a
+    Afficher("le ppcm de a et b est : ", ppcm)
+	
+FIN_ALGORITHME
+
+EXERCICE19:
+Algorithme Somme_prix_articles
+VAR prix, somme : entiers
+
+DEBUT_ALGORITHME
+
+        Afficher("Entrer les prix des articles : ")
+        Lire(prix)
+        somme <--- 0
+        Tant que  (prix!=0) faire
+            somme <--- somme+prix
+	        Afficher("Entrer un autre prix : ")
+            Lire(prix)
+        FinTant que
+        Afficher("la somme des articles est : ",somme)
+		  
+FIN_ALGORITHME
+
+EXERCICE20:
+Algorithme Nombre_Plus_Grand
+VAR i, n, m : entiers
+
+DEBUT_ALGORITHME
+    m <-- 0
+	Pour i allant de 1 à 10 faire
+	    Afficher("saisir vos valeurs au choix pour afficher le +grand: ")
+		Lire(n)
+		Si n>m alors
+		   m <-- n
+		FinSi
+	FinPour	
+	Afficher("la valeur la plus grande est: ", m)	
+
+FIN_ALGORITHME
+
+EXERCICE21:
+Algorithme Jeu_Dévinette
+VAR ValDuJou1, DevDuJou2 : entiers
+
+DEBUT_ALGORITHME
+    Afficher("joueur1,saisi une valeur que le joueur2 va déviner: ")
+	Lire(ValDuJou1)
+	ValDuJou1 <-- 0 
+	Tant_que (ValDuJou1 != DevDuJou2) faire
+	    Si (ValDuJou1 < DevDuJou2) alors
+		   Afficher("valeur dévinée trop grand!")
+		   Lire(DevDuJou2)
+		Sinon Si (ValDuJou1 > DevDuJou2) alors
+                 Afficher("valeur dévinée trop petit!")
+				 Lire(DevDuJou2)
+              FinSi	
+        FinSi	
+	FinTant_que	
+    Afficher("Félicitation!! Vous avez déviné. ", ValDuJou1)		
+FIN_ALGORITHME
+
+EXERCICE22:
+Algorithme
+VAR
+
+DEBUT_ALGORITHME
+     svg<-----0
+	 POUR i <----- 1 a 15 
+		si(Tableau[i+1] != nil)
+			SI(Tableau[i] < Tableau[i+1])
+				cpt <----- cpt +1
+				last <----- Tableau[i+1]
+				pos<-----i+1
+			SINON
+				SI(svg < cpt)
+					svg<-----cpt
+					svg2<-----last
+					posi<-----pos
+				FINSI
+				pos<-----0
+				cpt<-----0
+				last<-----0
+			FINSI
+		FINSI
+	 FINPOUR
+	Afficher("Longeur est de la suite successive : ",svg)
+	Afficher("Le dernier nombre est : ",svg2," , Il est a la position : ",posi)
+	Afficher("Tableau de la suite Successive ")
+	POUR j <----- (posi-svg) a posi
+		Afficher(Tableau[j]," * ")
+
+FIN_ALGORITHME
+
+EXERCICE23:
+Alogrithme Calcul_Nombre_Lapins
+VAR F0, F1, FX, i; nbre_mois : entiers
+  
+DEBUT_ALGORITHME
+    F0 <-- 2
+    F1 <-- 2
+    Pour i allant de 1 à 11 faire
+        FX <-- F0 + F1
+        F0 <-- F1
+        F1 <-- FX  
+    FinPour		
+    Afficher("Le nombre de lapin au 12ème mois est : ", FX)
+    F0 <-- 2
+    F1 <-- 2
+    nbre_mois <-- 0
+    FX <-- 0
+    Tant_que (FX < 1000000000) faire
+       FX <-- F0 + F1
+       F0 <-- F1
+       F1 <-- FX
+    nbre_mois <-- nbre_mois+1
+    FinTant_que
+    Afficher("les 1 Millard de lapin seront atteints au bout de ",nbre_mois," mois")
+FIN_ALGORITHME
 
 
+EXERCICE24:
+Algorithme Jeu_Dévinette
+VAR ValDuJou1, DevDuJou2, Tentative : entiers
 
+DEBUT_ALGORITHME
+    Afficher("joueur1,saisi une valeur que le joueur2 va déviner: ")
+	Lire(ValDuJou1)
+	ValDuJou1 <-- 0 
+	Tentative <-- 0 
+	Pour Tentative allant de 1 à 5 faire
+	    Tant_que (ValDuJou1 != DevDuJou2) faire
+	        Si (ValDuJou1 < DevDuJou2) alors
+		        Afficher("valeur dévinée trop grand!")
+		        Lire(DevDuJou2)
+		    Sinon Si (ValDuJou1 > DevDuJou2) alors
+                     Afficher("valeur dévinée trop petit!")
+				     Lire(DevDuJou2)
+                  FinSi	
+            FinSi	
+	    FinTant_que	
+		Tentative <-- Tentative + 1
+	FinPour	
+    Afficher("Félicitation!! Vous avez déviné. ", ValDuJou1)		
+FIN_ALGORITHME
 
+EXERCICE25:
+Parti1:
+#include <stdio.h>
+#include <stdlib.h>
+void main(int argc, char *argv[])
+{
+    for (int i = 1; i <= 10; i++){
+        int j = 1;
+        while ( j <= i){
+            printf("%d ",i);
+            j++;
+        }
+        printf("\n");
+    }
+}
+Parti2:
+#include <stdio.h>
+#include <stdlib.h>
+void main(int argc, char *argv[])
+{
+    int nombre, nbrediviseur = 0;
+    printf("Entrez un nombre entier \n");
+    scanf("%d", &nombre);
+    if (nombre == 0 || nombre == 1){
+        printf("Le nombre %d n'est pas un nombre premier",nombre);
+    }
+    else{
+        	for (int i = 1; i <= nombre; i++){
+          		if (nombre%i == 0){
+                	      nbrediviseur = nbrediviseur+1;
+            	}
+        	}
+        	if (nbrediviseur > 2){
+                 printf("Le nombre %d n'est pas un nombre premier ",nombre);
+        	}
+        	else { printf("Le nombre %d est un nombre premier ",nombre); }
+    }
+}
 
+EXERCICE26:
+ALGORITHME Test_Ordre
+VAR val, nbr_val, i, TabCroissant, TabDécroissant: eniters
+         tab : tableau
+ 
+DEBUT_ALGORITHME
+  AFFICHER "Donner le nombre de valeur de la suite"
+  LIRE nombreValeur
+  tableauCroissant <--------- 1
+  tableauDecroissant <--------- 1
+  POUR i ALLANT_DE 0 A nombreValeur-1
+    DEBUT_POUR
+    AFFICHER "Donner un nombre"
+    LIRE valeurs
+    tableauValeurs[i] <--------- valeurs
+    FIN_POUR
+  POUR i ALLANT_DE 0 A nombreValeur-1
+    DEBUT_POUR
+    SI (tableauValeurs[i] > tableauValeurs[i+1]) ALORS
+      DEBUT_SI
+      	tableauCroissant <--------- 0
+      FIN_SI
+    SI (tableauValeurs[i] < tableauValeurs[i+1]) ALORS
+      DEBUT_SI
+      	tableauDecroissant <--------- 0
+      FIN_SI
+    FIN_POUR
+  SI (tableauCroissant == 1) ALORS
+    DEBUT_SI
+    	AFFICHER "Le tableau est croissant"
+    FIN_SI
+   SINON
+     DEBUT_SINON
+      SI (tableauDecroissant == 1) ALORS
+        DEBUT_SI
+        	AFFICHER "Le tableau est décroissant"
+        FIN_SI
+     SINON
+          DEBUT_SINON
+          	     AFFICHER "Le tableau est quelconque"
+          FIN_SINON
+      FIN_SINON
+FIN_ALGORITHME
+
+ 
